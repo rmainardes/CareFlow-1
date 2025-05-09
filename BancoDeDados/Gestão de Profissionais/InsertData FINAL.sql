@@ -888,37 +888,3 @@ INSERT INTO T09D_BANCO_DE_HORAS (DATA_BANCO, SALDO_HORA, ID_REGISTRO_PONTO, ID_C
 ('2025-03-01', 8, 11, 11);
 INSERT INTO T09D_BANCO_DE_HORAS (DATA_BANCO, SALDO_HORA, ID_REGISTRO_PONTO, ID_COMPENSACAO) VALUES
 ('2025-04-01', 4, 12, 12);
-
-ALTER TABLE T09D_EVENTO_PAGAMENTO 
-MODIFY ID_AFASTAMENTO NULL;
- 
- 
-DECLARE
-    v_data_registro DATE;
-    v_id_registro_ponto INTEGER;
-BEGIN
-    FOR i IN 0..11 LOOP  -- Insere para 12 meses (um ano)
-        v_data_registro := ADD_MONTHS(TO_DATE('2024-01-01', 'YYYY-MM-DD'), i);
- 
-        -- Pegando um ID_REGISTRO_PONTO válido correspondente ao mês
-        SELECT ID INTO v_id_registro_ponto
-        FROM T09D_REGISTRO_DE_PONTO
-        WHERE ID_PROFISSIONAL = 4
-        AND EXTRACT(MONTH FROM DATA_REGISTRO) = EXTRACT(MONTH FROM v_data_registro)
-        AND ROWNUM = 1; -- Pegando um registro qualquer do mês
- 
-        -- Inserindo o evento de pagamento
-        INSERT INTO T09D_EVENTO_PAGAMENTO (
-            DESCRICAO, ID_FORMA_PAGAMENTO, ID_RUBRICA, ID_REGISTRO_PONTO, ID_BANCO_HORAS, ID_AFASTAMENTO
-        ) VALUES (
-            'Pagamento referente ao mês ' || TO_CHAR(v_data_registro, 'MM/YYYY'),
-            1,  -- ID_FORMA_PAGAMENTO (ajuste conforme necessário)
-            1,  -- ID_RUBRICA (ajuste conforme necessário)
-            v_id_registro_ponto,
-            1,  -- ID_BANCO_HORAS (ajuste conforme necessário)
-            NULL -- ID_AFASTAMENTO (se houver afastamento, ajuste)
-        );
-    END LOOP;
- 
-   
-END;
