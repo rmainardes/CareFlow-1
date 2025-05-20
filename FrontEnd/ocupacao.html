@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão Hospitalar - Escala de Funcionários</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <div class="divInterna">
+        <div class="container">
+            <div class="chart-container">
+                <div class="chart-toggle-buttons">
+                    <button id="botaoPizza" onclick="mostrarGrafico('pizza')">Ocupação</button>
+                    <button id="botaoLeitos" onclick="mostrarGrafico('linha')">Histórico</button>
+                </div>
+                <div id="graficoPizza" class="chart-container-ratio" style="display: block;">
+                    <canvas id="chartLeitosPizza"></canvas>
+                </div>
+                <div id="graficoLinha" style="display: none;">
+                    <canvas id="chartLeitosLinha"></canvas>
+                </div>
+            </div>
+
+
+            <div class="chart-container, lista-container" id="primeiroChart">
+                <div class="filters">
+
+                    <label for="filterAla" id="labelFiltrar">Filtrar por ala:</label>
+                    <select id="filterAla">
+                        <option value="todas">Todas</option>
+                        <option value="cardiologia">Cardiologia</option>
+                        <option value="ortopedia">Ortopedia</option>
+                        <option value="pediatria">Pediatria</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Número de Leito</th>
+                                <th>Status</th>
+                                <th>Paciente</th>
+                                <th>Profissional Atribuído</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>101</td>
+                                <td class="status-occupied">Ocupado</td>
+                                <td>João Silva</td>
+                                <td>Dra. Maria Oliveira</td>
+                            </tr>
+                            <tr>
+                                <td>102</td>
+                                <td class="status-free">Livre</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>103</td>
+                                <td class="status-occupied">Ocupado</td>
+                                <td>Ana Costa</td>
+                                <td>Dr. Carlos Souza</td>
+                            </tr>
+                            <tr>
+                                <td>104</td>
+                                <td class="status-free">Livre</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>105</td>
+                                <td class="status-occupied">Ocupado</td>
+                                <td>Mariana Santos</td>
+                                <td>Enf. Paulo Lima</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+    <script>
+        let chartPizza;
+        let chartLinha;
+
+        function mostrarGrafico(tipo) {
+            const divPizza = document.getElementById("graficoPizza");
+            const divLinha = document.getElementById("graficoLinha");
+
+            // Reset both displays first
+            divPizza.style.display = 'none';
+            divLinha.style.display = 'none';
+
+            if (tipo === 'pizza') {
+                divPizza.style.display = 'block';
+
+                if (!chartPizza) {
+                    const ctxPizza = document.getElementById('chartLeitosPizza').getContext('2d');
+                    chartPizza = new Chart(ctxPizza, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Ocupados', 'Livres'],
+                            datasets: [{
+                                data: [3, 2],
+                                backgroundColor: ['#e74c3c', '#2ecc71'],
+                                hoverOffset: 10
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: true,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    chartPizza.update();
+                }
+
+            } else if (tipo === 'linha') {
+                divLinha.style.display = 'block';
+
+                if (!chartLinha) {
+                    const ctxLinha = document.getElementById('chartLeitosLinha').getContext('2d');
+                    chartLinha = new Chart(ctxLinha, {
+                        type: 'line',
+                        data: {
+                            labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                            datasets: [{
+                                label: 'Leitos Ocupados',
+                                data: [2, 3, 3, 4, 3, 2, 3],
+                                borderColor: '#3498db',
+                                fill: false,
+                                tension: 0.4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: { stepSize: 1 }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    chartLinha.update();
+                }
+            }
+        }
+
+        // Add window resize handler
+        window.addEventListener('resize', function () {
+            if (chartPizza) chartPizza.resize();
+            if (chartLinha) chartLinha.resize();
+        });
+
+        // window.onload = () => {
+        //     mostrarGrafico('pizza');
+        // };
+    </script>
+    <script>
+        function showTab(tabId) {
+            // Hide all content sections
+            document.querySelectorAll('.content').forEach(content => {
+                content.classList.remove('visible');
+            });
+
+            // Show selected section
+            document.getElementById(tabId).classList.add('visible');
+
+            // Highlight active tab
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active-tab');
+            });
+
+            event.target.classList.add('active-tab');
+        }
+    </script>
+
+</body>
+
+</html>

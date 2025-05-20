@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão Hospitalar - Escala de Funcionários</title>   
+
+
+    <style>
+        .button-group {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="divInterna">
+        <form class="form-container">
+            <!-- Nome do paciente (linha inteira) -->
+            <div class="form-group long">
+                <label for="idPaciente">Nome Completo do Paciente:</label>
+                <input type="text" id="idPaciente" name="idPaciente" required>
+            </div>
+
+            <!-- Funcionário responsável (linha inteira) -->
+            <div class="form-group long">
+                <label for="nomeCompleto">Funcionário Responsável:</label>
+                <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+            </div>
+
+            <!-- Data de Entrada e Saída -->
+            <div class="form-row">
+                <div class="form-group medium">
+                    <label for="dataEntrada">Data de Entrada:</label>
+                    <input type="date" id="dataEntrada" name="dataEntrada" required>
+                </div>
+                <div class="form-group medium">
+                    <label for="dataSaida">Data de Saída:</label>
+                    <input type="date" id="dataSaida" name="dataSaida">
+                </div>
+            </div>
+
+            <!-- Situação -->
+            <div class="form-group medium">
+                <label for="situacao">Situação:</label>
+                <select id="situacao" name="situacao" required>
+                    <option value="internado">Internado</option>
+                    <option value="alta">Alta</option>
+                    <option value="transferido">Transferido</option>
+                    <option value="obito">Óbito</option>
+                </select>
+            </div>
+
+            <!-- Botões -->
+            <div class="form-row">
+                <div class="form-group button-group">
+                    <button type="button" id="voltar">Voltar</button>
+                    <button type="submit" id="submitEscala">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- <script>
+        function filtrar() {
+            var filterBox = document.querySelector('.filter-box');
+            if (filterBox.classList.contains('visible')) {
+                filterBox.classList.remove('visible');
+                setTimeout(function () {
+                    filterBox.style.display = 'none'; // Hide after transition
+                }, 250); // Timeout matches the transition duration
+            } else {
+                filterBox.style.display = 'block'; // Display right away
+                setTimeout(function () {
+                    filterBox.classList.add('visible');
+                }, 0); // Immediate change to visible state
+            }
+        }
+    </script> -->
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+.parent {
+    padding: 10px;
+}
+
+
+.div3 {
+    width: 70%;
+    /* Make parent element full-width */
+    max-width: 600px;
+    justify-self: center;
+    /* Max width for container, adjust as needed */
+}
+
+
+
+.div2 {
+    margin-top: 5%;
+}
+
+table,
+thead {
+    border: 2px solid black;
+    margin-bottom: 0px;
+}
+
+.div3 canvas {
+    aspect-ratio: 1 / 1;
+    /* Maintain aspect ratio */
+    width: 100%;
+    /* Width defined, height determined by aspect ratio */
+    height: auto;
+    /* Let height adjust based on width */
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 2vh;
+    /* Add padding vertically */
+    margin-bottom: 15px;
+    margin-top: 5%;
+    box-sizing: border-box;
+    /* Ensure padding/border do not affect box sizing */
+}
+
+.pesquisador {
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+
+    border-radius: 5px;
+}
+
+.pesquisador input {
+    margin-left: 8px;
+}
+
+#graficoPacientes {
+    justify-self: center;
+
+    /* Fixed width */
+    height: auto !important;
+    /* Make height auto to respect aspect-ratio */
+    aspect-ratio: 1 / 1 !important;
+    /* Aspect ratio of 1:1 */
+}
