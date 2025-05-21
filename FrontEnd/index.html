@@ -12,6 +12,49 @@
 </head>
 
 <body>
+        <div id="homeOverlay" class="overlay-home">
+        <div id="divLogoMain"><img id="logomain" src="imagens/logo.png" alt=""></div>
+        <div class="home-buttons">
+
+            <button class="nav-button home-button" data-page="gridprofissionais.html"
+                data-css="stylesheet_cadastroprofissionais.css">
+                <img src="imagens/cadastro.png" alt="Cadastro">
+                <span>Cadastro</span>
+            </button>
+            <button class="nav-button home-button" data-page="gridbancodehoras.html">
+                <img src="imagens/bancodehoras.png" alt="Time Bank">
+                <span>Banco de Horas</span>
+            </button>
+            <button class="nav-button home-button" data-page="gridescala.html">
+                <img src="imagens/escala.png" alt="Shift">
+                <span>Shift</span>
+            </button>
+            <button class="nav-button home-button" data-page="registroponto.html" data-css="style_registroponto.css">
+                <img src="imagens/registrodeponto.png" alt="Time Record">
+                <span>Registro de Ponto</span>
+            </button>
+
+
+            <button class="nav-button home-button" data-page="ocupacao.html" data-css="style_ocupacao.css">
+                <img src="imagens/ocupacao.png" alt="Occupancy">
+                <span>Ocupação</span>
+            </button>
+            <button class="nav-button home-button" data-page="cadastropaciente.html">
+                <img src="imagens/pacientes.png" alt="Pacientes">
+                <span>Pacientes</span>
+            </button>
+            <button class="home-button" onclick="openPage('patients2.html')">
+                <img src="imagens/configurações.png" alt="Configurações">
+                <span>Configurações</span>
+            </button>
+            <button class="nav-button home-button" data-page="produtividade.html" data-css="produtividadecss.css">
+                <img src="imagens/produtividade.png" alt="Productivity">
+                <span>Produtividade</span>
+            </button>
+
+        </div>
+    </div>
+
     <div class="layout">
         <div id="nav">
         </div>
@@ -64,6 +107,11 @@
             if (!pageUrl) {
                 console.error('No page specified');
                 return;
+            }
+
+            const overlay = document.getElementById('homeOverlay');
+            if (overlay) {
+                overlay.style.display = 'none';
             }
 
             // Clear current content while loading            
