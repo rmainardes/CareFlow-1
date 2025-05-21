@@ -328,4 +328,18 @@ function showTab(tabId) {
 
 }
 
-console.log("Rodou");
+function abrirRelatorio(){
+    window.open(
+        "/FrontEnd/relatorioprofissional.html",
+        "CareFlow",
+        "width=800,height=600,resizable=yes"
+    );
+}
+
+function adicionarNovoRegistro(){
+    window.open(
+        "/FrontEnd/cadastroprofissionais2.html",
+        "CareFlow",
+        "width=800,height=600,resizable=yes"
+    );
+}
