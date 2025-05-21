@@ -841,30 +841,37 @@ button.active {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(10, 30, 50, 1);
-    /* Fundo escuro */
+    background: linear-gradient(to bottom, rgb(0, 0, 31) 0%, rgb(45, 45, 95) 50%, #0c0c16 100%);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* Stack items vertically */
+    justify-content: flex-start;
+    /* Align items at the top */
     align-items: center;
     z-index: 9999;
+    padding-top: 40px;
+    /* Add padding to create space */
 }
 
+
 .home-buttons {
-    margin-top: 20vh;
+    margin-top: 2vh;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     /* Define 4 equal width columns */
     gap: 30px;
-    max-width: 800px;
     padding: 40px;
     font-size: 8em;
+    justify-self: center;
+    align-self: center;
 }
 
 .home-button {
     color: white;
-    height: 20vh;
-    width: 14vw;
-    min-width: 100px;
+    height: 10vw;
+    width: 10vw;
+    min-width: 150px;
+    min-height: 150px;
     background-color: #1C3C50;
     border: white 2px solid;
     border-radius: 16px;
@@ -876,7 +883,7 @@ button.active {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 3.9vw;
+    font-size: 50px;
 }
 
 .home-button:hover {
@@ -898,20 +905,54 @@ button.active {
 }
 
 #logomain {
-    height: 30vh;
-    max-height: 30vh;
+    height: 150px;
+    max-height: 150px;
 }
 
-#divLogoMain {
-    position: fixed;
-    /* Position fixed to place it relative to the viewport */
-    top: 20px;
-    /* Distance from the top border */
-    left: 50%;
-    /* Move to the horizontal center */
-    transform: translateX(-50%);
-    /* Adjust position to perfect center alignment */
-    z-index: 10000;
-    /* Ensure it appears above other content */
-    /* Add any other styling necessary */
+
+
+@media (max-height: 500px) {
+
+    /* Example adjustment for shorter screens */
+    #divLogoMain {
+        top: 10px;
+        /* Reduce the distance, or adjust as needed */
+    }
+}
+
+.home-button span {
+    font-weight: bold;
+    font-size: 2rem;
+    /* Base font size */
+    color: white;
+    margin-bottom: 4px;
+}
+
+@media (max-width: 600px) {
+    .home-button span {
+        font-size: 1.8rem;
+        /* Adjust for smaller screens */
+    }
+}
+
+@media (max-width: 400px) {
+    .home-button span {
+        font-size: 1.5rem;
+        /* Further adjust for very small screens */
+    }
+}
+
+.home-button {
+    display: flex;
+    flexDirection: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.home-button span {
+    font-weight: bold;
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 4px;
 }

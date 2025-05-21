@@ -1,29 +1,39 @@
-/* compensacao.css - Correção de Inputs */
 .parent {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 20px;
+    display: flex;
+    flex-direction: row;
+
     padding: 20px;
-    max-width: 800px;
-    margin: auto;
+
+
     background-color: #FFFFFF;
     border-radius: 6px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.div1 {
-    grid-area: 1 / 1 / 4 / 3;
-}
 
-.div2, .div3, .div4, .div5 {
+
+.div2,
+.div3,
+.div4,
+.div5 {
     display: flex;
     flex-direction: column;
     padding: 10px;
     background-color: #F8F8F8;
     border: 1px solid #E0E0E0;
     border-radius: 4px;
-    width: 100%; /* Garantindo que cada div ocupe seu espaço corretamente */
+
+    /* Garantindo que cada div ocupe seu espaço corretamente */
+}
+
+.div2,
+.div3 {
+    margin-right: 10px;
+}
+
+.div2,
+.div4 {
+    margin-bottom: 10px;
 }
 
 label {
@@ -34,7 +44,8 @@ label {
 }
 
 input {
-    width: calc(100% - 16px); /* Ajuste fino para evitar overflow */
+    width: calc(100% - 3px);
+    /* Ajuste fino para evitar overflow */
     padding: 8px;
     font-size: 0.95rem;
     border: 1px solid #CCCCCC;
@@ -47,19 +58,4 @@ input:focus {
     border-color: #0055A5;
     box-shadow: 0 0 4px rgba(0, 85, 165, 0.3);
     outline: none;
-}
-
-/* Responsividade */
-@media (max-width: 600px) {
-    .parent {
-        grid-template-columns: 1fr;
-    }
-
-    .div2, .div3, .div4, .div5 {
-        width: 100%;
-    }
-
-    input {
-        width: 100%; /* Garante que inputs não fiquem desalinhados em telas menores */
-    }
 }
